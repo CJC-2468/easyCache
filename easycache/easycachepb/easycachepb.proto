@@ -1,0 +1,15 @@
+syntax = "proto3";
+option go_package = ".";
+//Request 包含 2 个字段， group 和 key，这与我们之前定义的接口 /_geecache/<group>/<name> 所需的参数吻合。
+message Request {
+  string group = 1;
+  string key = 2;
+}
+
+message Response {
+  bytes value = 1;// byte 数组
+}
+
+service GroupCache {
+  rpc Get(Request) returns (Response);
+}
